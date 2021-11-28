@@ -43,7 +43,7 @@ struct AnimeListView: View {
                 .frame(height: 50)
                }
             }
-            .onDelete(perform: removeItems)
+            .onDelete(perform: removeAnime)
         }
         .navigationBarTitle("Anime")
         .listStyle(PlainListStyle())
@@ -58,7 +58,7 @@ struct AnimeListView: View {
             AddAnimeView().environment(\.managedObjectContext, self.moc)
         }
     }
-    func removeItems(at offsets: IndexSet) {
+    func removeAnime(at offsets: IndexSet) {
         for offset in offsets{
             let singleAnime = anime[offset]
             moc.delete(singleAnime)

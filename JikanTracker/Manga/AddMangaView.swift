@@ -1,5 +1,5 @@
 //
-//  AddAnime.swift
+//  AddMangaView.swift
 //  JikanTracker
 //
 //  Created by Plamenna Petrova on 11/28/21.
@@ -7,22 +7,22 @@
 
 import SwiftUI
 
-struct AddAnimeView: View {
+struct AddMangaView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
     
     @State private var name = ""
-    @State private var episodes = 0
+    @State private var chapters = 0
     @State private var rating = 0
     @State private var review = ""
     @State private var type = ""
     
-    let types = ["Watching", "On hold", "Dropped", "Completed", "ReWatching", "Plan to Watch"]
+    let types = ["Reading", "On hold", "Dropped", "Completed", "Rereading", "Plan to read"]
     
     var body: some View {
-        NavigationView{
+        NavigationView {
             Form {
-                TextField("Anime name", text: $name)
+                TextField("Manga Name", text: $name)
                     .disableAutocorrection(true)
                 Section {
                     Picker("Select", selection: $type) {
@@ -31,13 +31,13 @@ struct AddAnimeView: View {
                         }
                     }
                 }
-                Section {
-                    HStack {
-                        Text("Episodes")
+                Section{
+                    HStack{
+                        Text("Chapters")
                             .font(.headline)
                         Spacer()
-                        Picker("Episodes", selection: $episodes) {
-                            ForEach(0..<2000){
+                        Picker("Chapters", selection: $chapters) {
+                            ForEach(0..<2000) {
                                 Text("\($0)")
                             }
                         }
@@ -47,18 +47,17 @@ struct AddAnimeView: View {
                         .compositingGroup()
                     }
                 }
-                Section {
-                    Picker("Rating", selection: $rating) {
-                        ForEach(0..<11) {i in
-                            HStack {
-                                Image(systemName: "star.fill")
-                                    .foregroundColor(.yellow)
+                Section{
+                    Picker("Rating", selection: $rating){
+                        ForEach(0..<11){i in
+                            HStack{
+                                Image(systemName: "star.fill").foregroundColor(.yellow)
                                 Text(" \(i)")
                             }
                         }
                     }
                 }
-                Section {
+                Section{
                     Text("Review")
                     TextEditor(text: $review)
                         .frame(height: 170)
@@ -66,14 +65,14 @@ struct AddAnimeView: View {
                 }
             }
             .navigationBarItems(trailing:
-              Button("Save") {
-                let newAnime = Anime(context: self.moc)
-                newAnime.name = self.name
-                newAnime.type = self.type
-                newAnime.episodes = Int16(self.episodes)
-                newAnime.rating = Int16(self.rating)
-                newAnime.review = self.review
-                newAnime.date = Date()
+                Button("Save") {
+                let newManga = Manga(context: self.moc)
+                newManga.name = self.name
+                newManga.chapters = Int16(self.chapters)
+                newManga.rating = Int16(self.rating)
+                newManga.review = self.review
+                newManga.type = self.type
+                newManga.date = Date()
                 try? self.moc.save()
                 
                 self.presentationMode.wrappedValue.dismiss()
@@ -83,8 +82,8 @@ struct AddAnimeView: View {
     }
 }
 
-struct AddAnimeView_Previews: PreviewProvider {
+struct AddMangaView_Previews: PreviewProvider {
     static var previews: some View {
-        AddAnimeView()
+        AddMangaView()
     }
 }

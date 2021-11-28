@@ -45,6 +45,10 @@ struct CustomGroup:View {
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
+    @FetchRequest(entity: Manga.entity(), sortDescriptors: [
+        NSSortDescriptor(keyPath: \Manga.name, ascending: true),
+        NSSortDescriptor(keyPath: \Manga.chapters, ascending: true)
+    ]) var manga: FetchedResults<Manga>
     @FetchRequest(entity: Anime.entity(), sortDescriptors: [
         NSSortDescriptor(keyPath: \Anime.name, ascending: true),
         NSSortDescriptor(keyPath: \Anime.episodes, ascending: true)
@@ -55,6 +59,9 @@ struct ContentView: View {
             ScrollView{
                 VStack{
                     LazyVGrid(columns: [.init(), .init()]){
+                        NavigationLink(destination: MangaListView()){
+                            CustomGroup(img: "books.vertical", count: "\(manga.count)", color: Color.green, label: "Mangas")
+                        }
                         NavigationLink(destination: AnimeListView()){
                             CustomGroup(img: "tv", count: "\(anime.count)", color: Color.red, label: "Anime")
                         }
@@ -68,6 +75,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().preferredColorScheme(.dark)
+        ContentView().preferredColorScheme(ColorScheme.dark)
     }
 }
