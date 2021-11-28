@@ -81,6 +81,26 @@ struct ContentView: View {
                             CustomGroup(img: "film", count: "\(movies.count)", color: Color.blue, label: "Movies")
                         }
                     }.padding()
+                    Form{
+                        HStack{
+                            NavigationLink(destination: RecentlyAddedView()){
+                                Label(
+                                    title: {
+                                        Text("Recently Added")
+                                            .font(.title2)
+                                    },
+                                    icon: {
+                                        Image(systemName: "list.bullet")
+                                            .padding(9)
+                                            .font(.title2)
+                                            .background(Color.orange)
+                                            .foregroundColor(.white)
+                                            .clipShape(Circle())
+                                    }
+                                )
+                            }
+                        }.padding(5)
+                    }.frame(height: 125)
                 }
                 .navigationTitle("Jikan Tracker Lists")
             }

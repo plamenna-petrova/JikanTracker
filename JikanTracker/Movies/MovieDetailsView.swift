@@ -36,6 +36,21 @@ struct MovieDetailsView: View {
                 }
             }
         }
+        .onAppear{
+            self.rating = self.movie.rating
+            self.review = self.movie.review ?? "-"
+        }
+        .onDisappear(perform: saveChanges)
+        .navigationBarTitle("\(movie.name ?? "-")", displayMode: .inline)
+    }
+    func saveChanges() {
+        movie.rating = rating
+        movie.review = review
+        
+        try? self.moc.save()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.presentationMode.wrappedValue.dismiss()
+        }
     }
 }
 
