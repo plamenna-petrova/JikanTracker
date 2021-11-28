@@ -16,8 +16,7 @@ struct TopAnime: Codable {
     var rank: Int
     var episodes: Int
     var score: Double
-    var start_date: String
-    
+    var startDate: String
 }
 
 struct TopAnimeListView: View {
@@ -26,14 +25,13 @@ struct TopAnimeListView: View {
         
         List(results, id: \.rank) { item in
             VStack(alignment: .leading){
-                
                 HStack {
                     Text("\(item.rank).")
                     Text("\(item.title)")
                         .font(.title2)
                         .foregroundColor(.orange)
                 }
-                Text("     Aired \(item.start_date)")
+                Text("     Aired \(item.startDate)")
                 Text("     Rating \(String(item.score))")
                     .foregroundColor(.secondary)
                 Text("     Episodes: \(item.episodes)")
@@ -42,11 +40,6 @@ struct TopAnimeListView: View {
             }.navigationBarTitle("Top Anime",displayMode: .inline)
         }
         .onAppear(perform: topAnime)
-        
-        
-        
-        
-        
     }
     func topAnime(){
         guard let url = URL(string: "https://api.jikan.moe/v3/top/anime/1") else {
