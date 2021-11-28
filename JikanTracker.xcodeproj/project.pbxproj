@@ -17,6 +17,7 @@
 		716A687A275417DC005A6981 /* TVShowDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A6879275417DC005A6981 /* TVShowDetailsView.swift */; };
 		716A687C2754180A005A6981 /* TVShowsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A687B2754180A005A6981 /* TVShowsListView.swift */; };
 		716A687E27543354005A6981 /* RecentlyAddedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A687D27543354005A6981 /* RecentlyAddedView.swift */; };
+		716A68812754466B005A6981 /* TopAnimeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A68802754466B005A6981 /* TopAnimeListView.swift */; };
 		71FDC6042753B79B00ABA087 /* JikanTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FDC6032753B79B00ABA087 /* JikanTrackerApp.swift */; };
 		71FDC6062753B79B00ABA087 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FDC6052753B79B00ABA087 /* ContentView.swift */; };
 		71FDC6082753B7A700ABA087 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71FDC6072753B7A700ABA087 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		716A6879275417DC005A6981 /* TVShowDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowDetailsView.swift; sourceTree = "<group>"; };
 		716A687B2754180A005A6981 /* TVShowsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsListView.swift; sourceTree = "<group>"; };
 		716A687D27543354005A6981 /* RecentlyAddedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecentlyAddedView.swift; path = ../../../RecentlyAddedView.swift; sourceTree = "<group>"; };
+		716A68802754466B005A6981 /* TopAnimeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAnimeListView.swift; sourceTree = "<group>"; };
 		71FDC6002753B79B00ABA087 /* JikanTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JikanTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71FDC6032753B79B00ABA087 /* JikanTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JikanTrackerApp.swift; sourceTree = "<group>"; };
 		71FDC6052753B79B00ABA087 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,13 +94,6 @@
 			path = TVShows;
 			sourceTree = "<group>";
 		};
-		716A687F275443D0005A6981 /* Specials */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Specials;
-			sourceTree = "<group>";
-		};
 		71FDC5F72753B79B00ABA087 = {
 			isa = PBXGroup;
 			children = (
@@ -118,13 +113,13 @@
 		71FDC6022753B79B00ABA087 /* JikanTracker */ = {
 			isa = PBXGroup;
 			children = (
-				716A687F275443D0005A6981 /* Specials */,
-				716A687D27543354005A6981 /* RecentlyAddedView.swift */,
 				716A6876275417A3005A6981 /* TVShows */,
 				716A686F27540A88005A6981 /* Movies */,
 				716A68672753F8FA005A6981 /* Manga */,
 				71FDC6162753BBBD00ABA087 /* Anime */,
 				71FDC6032753B79B00ABA087 /* JikanTrackerApp.swift */,
+				716A687D27543354005A6981 /* RecentlyAddedView.swift */,
+				716A68802754466B005A6981 /* TopAnimeListView.swift */,
 				71FDC6052753B79B00ABA087 /* ContentView.swift */,
 				71FDC6072753B7A700ABA087 /* Assets.xcassets */,
 				71FDC60C2753B7A700ABA087 /* Persistence.swift */,
@@ -223,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				71FDC60D2753B7A700ABA087 /* Persistence.swift in Sources */,
+				716A68812754466B005A6981 /* TopAnimeListView.swift in Sources */,
 				71FDC6062753B79B00ABA087 /* ContentView.swift in Sources */,
 				71FDC61A2753C42200ABA087 /* AnimeListView.swift in Sources */,
 				716A687E27543354005A6981 /* RecentlyAddedView.swift in Sources */,

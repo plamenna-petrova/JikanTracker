@@ -101,6 +101,13 @@ struct ContentView: View {
                             }
                         }.padding(5)
                     }.frame(height: 125)
+                    VStack{
+                        LazyVGrid(columns: [.init(), .init()]) {
+                            NavigationLink(destination: TopAnimeListView()) {
+                                CustomGroup(img: "play", color: Color.yellow, label: "Top anime")
+                            }
+                        }.padding()
+                    }
                 }
                 .navigationTitle("Jikan Tracker Lists")
             }
