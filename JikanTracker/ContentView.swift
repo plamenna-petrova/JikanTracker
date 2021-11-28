@@ -53,6 +53,10 @@ struct ContentView: View {
         NSSortDescriptor(keyPath: \Anime.name, ascending: true),
         NSSortDescriptor(keyPath: \Anime.episodes, ascending: true)
     ]) var anime : FetchedResults<Anime>
+    @FetchRequest(entity: TVShow.entity(), sortDescriptors: [
+        NSSortDescriptor(keyPath: \TVShow.name, ascending: true),
+        NSSortDescriptor(keyPath: \TVShow.episodes, ascending: true)
+    ]) var tvShows: FetchedResults<TVShow>
     @FetchRequest(entity: Movie.entity(), sortDescriptors: [
         NSSortDescriptor(keyPath: \Movie.name, ascending: true),
         NSSortDescriptor(keyPath: \Movie.rating, ascending: true)
@@ -68,6 +72,9 @@ struct ContentView: View {
                         }
                         NavigationLink(destination: AnimeListView()){
                             CustomGroup(img: "tv", count: "\(anime.count)", color: Color.red, label: "Anime")
+                        }
+                        NavigationLink(destination: TVShowsListView()){
+                            CustomGroup(img: "play.tv", count: "\(tvShows.count)", color: Color.orange, label: "TV Shows")
                         }
                         NavigationLink(destination:
                             MoviesListView()) {

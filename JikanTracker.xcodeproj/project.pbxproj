@@ -13,6 +13,9 @@
 		716A687127540A9E005A6981 /* AddMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A687027540A9E005A6981 /* AddMovieView.swift */; };
 		716A687327540AAE005A6981 /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A687227540AAE005A6981 /* MovieDetailsView.swift */; };
 		716A687527540ACD005A6981 /* MoviesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A687427540ACD005A6981 /* MoviesListView.swift */; };
+		716A6878275417C6005A6981 /* AddTVShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A6877275417C6005A6981 /* AddTVShowView.swift */; };
+		716A687A275417DC005A6981 /* TVShowDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A6879275417DC005A6981 /* TVShowDetailsView.swift */; };
+		716A687C2754180A005A6981 /* TVShowsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A687B2754180A005A6981 /* TVShowsListView.swift */; };
 		71FDC6042753B79B00ABA087 /* JikanTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FDC6032753B79B00ABA087 /* JikanTrackerApp.swift */; };
 		71FDC6062753B79B00ABA087 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FDC6052753B79B00ABA087 /* ContentView.swift */; };
 		71FDC6082753B7A700ABA087 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71FDC6072753B7A700ABA087 /* Assets.xcassets */; };
@@ -31,6 +34,9 @@
 		716A687027540A9E005A6981 /* AddMovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMovieView.swift; sourceTree = "<group>"; };
 		716A687227540AAE005A6981 /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
 		716A687427540ACD005A6981 /* MoviesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListView.swift; sourceTree = "<group>"; };
+		716A6877275417C6005A6981 /* AddTVShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTVShowView.swift; sourceTree = "<group>"; };
+		716A6879275417DC005A6981 /* TVShowDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowDetailsView.swift; sourceTree = "<group>"; };
+		716A687B2754180A005A6981 /* TVShowsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsListView.swift; sourceTree = "<group>"; };
 		71FDC6002753B79B00ABA087 /* JikanTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JikanTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71FDC6032753B79B00ABA087 /* JikanTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JikanTrackerApp.swift; sourceTree = "<group>"; };
 		71FDC6052753B79B00ABA087 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,6 +80,16 @@
 			path = Movies;
 			sourceTree = "<group>";
 		};
+		716A6876275417A3005A6981 /* TVShows */ = {
+			isa = PBXGroup;
+			children = (
+				716A6877275417C6005A6981 /* AddTVShowView.swift */,
+				716A6879275417DC005A6981 /* TVShowDetailsView.swift */,
+				716A687B2754180A005A6981 /* TVShowsListView.swift */,
+			);
+			path = TVShows;
+			sourceTree = "<group>";
+		};
 		71FDC5F72753B79B00ABA087 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +109,7 @@
 		71FDC6022753B79B00ABA087 /* JikanTracker */ = {
 			isa = PBXGroup;
 			children = (
+				716A6876275417A3005A6981 /* TVShows */,
 				716A686F27540A88005A6981 /* Movies */,
 				716A68672753F8FA005A6981 /* Manga */,
 				71FDC6162753BBBD00ABA087 /* Anime */,
@@ -198,7 +215,10 @@
 				71FDC6062753B79B00ABA087 /* ContentView.swift in Sources */,
 				71FDC61A2753C42200ABA087 /* AnimeListView.swift in Sources */,
 				716A687527540ACD005A6981 /* MoviesListView.swift in Sources */,
+				716A687A275417DC005A6981 /* TVShowDetailsView.swift in Sources */,
+				716A687C2754180A005A6981 /* TVShowsListView.swift in Sources */,
 				71FDC61C2753C63100ABA087 /* AnimeDetailsView.swift in Sources */,
+				716A6878275417C6005A6981 /* AddTVShowView.swift in Sources */,
 				71FDC6102753B7A700ABA087 /* JikanTracker.xcdatamodeld in Sources */,
 				716A68692753F91E005A6981 /* AddMangaView.swift in Sources */,
 				716A687327540AAE005A6981 /* MovieDetailsView.swift in Sources */,
