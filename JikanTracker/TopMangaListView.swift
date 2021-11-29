@@ -15,9 +15,8 @@ struct TopMangaData: Codable {
 struct TopManga: Codable {
     var title: String
     var rank: Int
-
     var score: Double
-    var startDate: String
+    var start_date: String
 }
 
 struct TopMangaListView: View {
@@ -34,7 +33,7 @@ struct TopMangaListView: View {
                         .font(.title2)
                         .foregroundColor(.orange)
                 }
-                Text("     Aired \(item.startDate)")
+                Text("     Aired \(item.start_date)")
                 Text("     Rating \(String(item.score))")
                     .foregroundColor(.secondary)
                 

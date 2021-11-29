@@ -56,7 +56,8 @@ struct AnimeDetailsView: View {
             self.type = self.anime.type ?? "-"
             self.review = self.anime.review ?? "-"
         }
-        
+        .onDisappear(perform: saveChanges)
+        .navigationBarTitle("\(anime.name ?? "-")", displayMode: .inline)
     }
     func saveChanges() {
         anime.episodes = episodes

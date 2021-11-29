@@ -16,7 +16,7 @@ struct TopAnime: Codable {
     var rank: Int
     var episodes: Int
     var score: Double
-    var startDate: String
+    var start_date: String
 }
 
 struct TopAnimeListView: View {
@@ -31,7 +31,7 @@ struct TopAnimeListView: View {
                         .font(.title2)
                         .foregroundColor(.orange)
                 }
-                Text("     Aired \(item.startDate)")
+                Text("     Aired \(item.start_date)")
                 Text("     Rating \(String(item.score))")
                     .foregroundColor(.secondary)
                 Text("     Episodes: \(item.episodes)")
