@@ -103,6 +103,9 @@ struct ContentView: View {
                     }.frame(height: 125)
                     VStack{
                         LazyVGrid(columns: [.init(), .init()]) {
+                            NavigationLink(destination: TopMangaListView()) {
+                                CustomGroup(img: "book", color: Color.green, label: "Top Manga")
+                            }
                             NavigationLink(destination: TopAnimeListView()) {
                                 CustomGroup(img: "play", color: Color.yellow, label: "Top anime")
                             }
