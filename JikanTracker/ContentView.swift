@@ -65,9 +65,12 @@ struct JikanTrackerView: View {
     
     @EnvironmentObject var viewModel: AppViewModel
     
+    let userEmail : String = (Auth.auth().currentUser?.email)!
+    
     var body: some View {
             ScrollView{
                 VStack{
+                    Text("Hi, \(userEmail)")
                     LazyVGrid(columns: [.init(), .init()]){
                         NavigationLink(destination: MangaListView()){
                             CustomGroup(img: "books.vertical", count: "\(manga.count)", color: Color.green, label: "Mangas")
@@ -283,6 +286,7 @@ struct SignUpView: View {
                             .cornerRadius(8)
                             .background(Color.blue)
                     })
+                    .padding()
                     
                 }
                 .padding()
