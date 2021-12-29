@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct AddAnimeView: View {
     @Environment(\.managedObjectContext) var moc
@@ -18,6 +19,8 @@ struct AddAnimeView: View {
     @State private var type = ""
     
     let types = ["Watching", "On hold", "Dropped", "Completed", "ReWatching", "Plan to Watch"]
+    
+    let currentUserUID : String = (Auth.auth().currentUser?.uid)!
     
     var body: some View {
         NavigationView{
@@ -74,6 +77,7 @@ struct AddAnimeView: View {
                 newAnime.rating = Int16(self.rating)
                 newAnime.review = self.review
                 newAnime.date = Date()
+                newAnime.userUID = currentUserUID
                 try? self.moc.save()
                 
                 self.presentationMode.wrappedValue.dismiss()

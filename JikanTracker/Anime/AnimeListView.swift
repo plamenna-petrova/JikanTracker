@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct AnimeListView: View {
     @Environment(\.managedObjectContext) var moc
@@ -19,29 +20,30 @@ struct AnimeListView: View {
     var body: some View {
         List{
             ForEach(anime,id: \.self){anime in
-                NavigationLink(destination:
-                AnimeDetailsView(anime: anime)) {
-                    VStack(alignment: .leading) {
-                        HStack(alignment: .top) {
-                            Text(anime.name ?? "Unknown")
-                                .font(.title)
-                        Spacer()
-                        VStack{
-                            Text("Ep \(anime.episodes)")
-                                .font(.subheadline)
-                                .multilineTextAlignment(.trailing)
-                                .foregroundColor(.secondary)
-                            HStack{
-                                Image(systemName: "star.fill").foregroundColor(.yellow)
-                                Text("\(anime.rating)/10")
+                if (Auth.auth().currentUser?.uid == anime.userUID) {
+                    NavigationLink(destination:
+                    AnimeDetailsView(anime: anime)) {
+                        VStack(alignment: .leading) {
+                            HStack(alignment: .top) {
+                                Text(anime.name ?? "Unknown")
+                                    .font(.title)
+                            Spacer()
+                            VStack{
+                                Text("Ep \(anime.episodes)")
                                     .font(.subheadline)
+                                    .multilineTextAlignment(.trailing)
                                     .foregroundColor(.secondary)
+                                HStack{
+                                    Image(systemName: "star.fill").foregroundColor(.yellow)
+                                    Text("\(anime.rating)/10")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
                             }
                         }
                     }
-                }
-                .frame(height: 50)
-               }
+                    .frame(height: 50)
+                   }                }
             }
             .onDelete(perform: removeAnime)
         }

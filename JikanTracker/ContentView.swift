@@ -45,6 +45,9 @@ struct CustomGroup:View {
 }
 
 struct JikanTrackerView: View {
+    
+    @EnvironmentObject var viewModel: AppViewModel
+    
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: Manga.entity(), sortDescriptors: [
         NSSortDescriptor(keyPath: \Manga.name, ascending: true),
@@ -63,11 +66,12 @@ struct JikanTrackerView: View {
         NSSortDescriptor(keyPath: \Movie.rating, ascending: true)
     ]) var movies : FetchedResults<Movie>
     
-    @EnvironmentObject var viewModel: AppViewModel
-    
     let userEmail : String = (Auth.auth().currentUser?.email)!
     
     var body: some View {
+            
+        let filteredAnime = anime.filter({ $0.userUID == Auth.auth().currentUser?.uid})
+        
             ScrollView{
                 VStack{
                     Text("Hi, \(userEmail)")
@@ -76,7 +80,7 @@ struct JikanTrackerView: View {
                             CustomGroup(img: "books.vertical", count: "\(manga.count)", color: Color.green, label: "Mangas")
                         }
                         NavigationLink(destination: AnimeListView()){
-                            CustomGroup(img: "tv", count: "\(anime.count)", color: Color.red, label: "Anime")
+                            CustomGroup(img: "tv", count: "\(filteredAnime.count)", color: Color.red, label: "Anime")
                         }
                         NavigationLink(destination: TVShowsListView()){
                             CustomGroup(img: "play.tv", count: "\(tvShows.count)", color: Color.orange, label: "TV Shows")
