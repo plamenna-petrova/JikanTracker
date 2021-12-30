@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Kingfisher
+
 struct TopData: Codable {
     
     var top: [TopAnime]
@@ -17,18 +19,24 @@ struct TopAnime: Codable {
     var episodes: Int
     var score: Double
     var start_date: String
+    var image_url: String
 }
 
 struct TopAnimeListView: View {
+    
     @State private var results = [TopAnime]()
+    
     var body: some View {
         
         List(results, id: \.rank) { item in
             VStack(alignment: .leading){
                 HStack {
+                    KFImage(URL(string: item.image_url)!)
+                        .resizable()
+                        .frame(width: 75, height: 75)
                     Text("\(item.rank).")
                     Text("\(item.title)")
-                        .font(.title2)
+                        .font(.caption2)
                         .foregroundColor(.orange)
                 }
                 Text("     Aired \(item.start_date)")
