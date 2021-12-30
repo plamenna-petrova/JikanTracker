@@ -9,6 +9,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct TVShowsListView: View {
+    
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: TVShow.entity(), sortDescriptors: [
         NSSortDescriptor(keyPath: \TVShow.name, ascending: true),

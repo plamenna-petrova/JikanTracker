@@ -1,0 +1,6 @@
+framework module Pods_JikanTracker {
+  umbrella header "Pods-JikanTracker-umbrella.h"
+
+  export *
+  module * { export * }
+}
