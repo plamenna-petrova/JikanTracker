@@ -18,12 +18,19 @@ struct MangaListView: View {
     @State private var showingAddScreen = false
     
     var body: some View {
+        
+        let jikanImage = UIImage(named: "logo")
+        let jikanImagePngData = jikanImage?.pngData()
+        
         List{
             ForEach(manga,id: \.self){manga in
                 if (Auth.auth().currentUser?.uid == manga.userUID) {
                     NavigationLink(destination: MangaDetailsView(manga: manga)) {
                         VStack(alignment: .leading){
                             HStack(alignment: .top) {
+                                Image(uiImage: UIImage(data: manga.image ?? jikanImagePngData!)!)
+                                        .resizable()
+                                        .frame(width: 50)
                                 Text(manga.name ?? "Unknown")
                                     .font(.title)
                                 Spacer()

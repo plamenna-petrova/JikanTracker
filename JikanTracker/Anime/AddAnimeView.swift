@@ -45,7 +45,7 @@ struct AddAnimeView: View {
                             Image(uiImage: UIImage(data: self.image!)!)
                                 .renderingMode(.original)
                                 .resizable()
-                                .frame(width: 75, height: 75)
+                                .frame(width: 75, height: 75, alignment: .leading)
                         }
                     } else {
                         Button(action: {

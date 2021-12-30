@@ -33,7 +33,7 @@ struct AnimeListView: View {
                             HStack(alignment: .top) {
                                 Image(uiImage: UIImage(data: anime.image ?? jikanImagePngData!)!)
                                     .resizable()
-                                    .frame(width: 50)
+                                    .frame(width: 50, alignment: .center)
                                 Text(anime.name ?? "Unknown")
                                     .font(.title)
                                 Spacer()

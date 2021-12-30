@@ -15,6 +15,7 @@
         <attribute name="chapters" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="rating" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="review" optional="YES" attributeType="String"/>
@@ -24,6 +25,7 @@
     <entity name="Movie" representedClassName="Movie" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="rating" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="review" optional="YES" attributeType="String"/>
@@ -33,6 +35,7 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="episodes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="rating" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="review" optional="YES" attributeType="String"/>
@@ -41,8 +44,8 @@
     </entity>
     <elements>
         <element name="Anime" positionX="-63" positionY="-18" width="128" height="164"/>
-        <element name="Manga" positionX="-63" positionY="36" width="128" height="149"/>
-        <element name="Movie" positionX="-54" positionY="72" width="128" height="119"/>
-        <element name="TVShow" positionX="-36" positionY="81" width="128" height="149"/>
+        <element name="Manga" positionX="-63" positionY="36" width="128" height="164"/>
+        <element name="Movie" positionX="-54" positionY="72" width="128" height="134"/>
+        <element name="TVShow" positionX="-36" positionY="81" width="128" height="164"/>
     </elements>
 </model>

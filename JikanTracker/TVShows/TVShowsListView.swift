@@ -19,12 +19,19 @@ struct TVShowsListView: View {
     @State private var showingAddScreen = false
     
     var body: some View{
+        
+        let jikanImage = UIImage(named: "logo")
+        let jikanImagePngData = jikanImage?.pngData()
+        
         List{
             ForEach(tvShow,id: \.self){tvShow in
                 if (Auth.auth().currentUser?.uid == tvShow.userUID) {
                     NavigationLink(destination: TVShowDetailsView(tvShow: tvShow)){
                         VStack(alignment: .leading) {
                             HStack(alignment: .top) {
+                                Image(uiImage: UIImage(data: tvShow.image ?? jikanImagePngData!)!)
+                                    .resizable()
+                                    .frame(width: 50, alignment: .center)
                                 Text(tvShow.name ?? "Unknown")
                                     .font(.title)
                                 Spacer()

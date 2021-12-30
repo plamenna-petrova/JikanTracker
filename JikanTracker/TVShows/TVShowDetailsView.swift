@@ -18,11 +18,40 @@ struct TVShowDetailsView: View {
     @State private var review = ""
     @State private var type = ""
     
+    @State private var image : Data? = .init(count: 0)
+        
+    @State private var showImage = false
+    
     let types = ["Watching", "On hold", "Dropped", "Completed", "ReWatching", "Plan to Watch"]
     
     var body: some View {
+        
+        let jikanImage = UIImage(named: "logo")
+        let jikanImagePngData = jikanImage?.pngData()
+        
         VStack{
             Form{
+                Section {
+                    if self.image?.count != 0 {
+                        Button(action: {
+                            self.showImage.toggle()
+                        }) {
+                            Image(uiImage: UIImage(data: self.image!)!)
+                                .renderingMode(.original)
+                                .resizable()
+                                .frame(width: 75, height: 75, alignment: .leading)
+                        }
+                    } else {
+                        Button(action: {
+                            self.showImage.toggle()
+                        }) {
+                            Image("logo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 75, height: 75)
+                        }
+                    }
+                }
                 Stepper(value: $episodes, step: 1){
                     Text("\(episodes) Episodes")
                 }
@@ -49,12 +78,16 @@ struct TVShowDetailsView: View {
                         .disableAutocorrection(true)
                 }
             }
+            .sheet(isPresented: self.$showImage, content: {
+                ImagePicker(show: self.$showImage, image: self.$image)
+            })
         }
         .onAppear{
             self.episodes = self.tvShow.episodes
             self.rating = self.tvShow.rating
             self.type = self.tvShow.type ?? "-"
             self.review = self.tvShow.review ?? "-"
+            self.image = self.tvShow.image ?? jikanImagePngData!
         }
         .onDisappear(perform: saveChanges)
         .navigationBarTitle("\(tvShow.name ?? "-")", displayMode: .inline)
@@ -64,6 +97,7 @@ struct TVShowDetailsView: View {
         tvShow.rating = rating
         tvShow.review = review
         tvShow.type = type
+        tvShow.image = image
         try? self.moc.save()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
             self.presentationMode.wrappedValue.dismiss()

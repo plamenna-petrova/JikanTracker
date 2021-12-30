@@ -18,20 +18,31 @@ struct MoviesListView: View {
     @State private var showingAddScreen = false
     
     var body: some View {
+        
+        let jikanImage = UIImage(named: "logo")
+        let jikanImagePngData = jikanImage?.pngData()
+        
         List{
             ForEach(movie,id: \.self){movie in
                 if (Auth.auth().currentUser?.uid == movie.userUID) {
                     NavigationLink(destination: MovieDetailsView(movie: movie)) {
                         VStack(alignment: .leading) {
-                            Text(movie.name ?? "Unknown")
-                                .font(.title)
-                            Spacer()
-                            HStack(alignment: .center){
-                                Image(systemName: "star.fill")
-                                    .foregroundColor(.yellow)
-                                Text("\(movie.rating)/10")
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
+                            HStack(alignment: .top) {
+                                Image(uiImage: UIImage(data: movie.image ?? jikanImagePngData!)!)
+                                    .resizable()
+                                    .frame(width: 50, alignment: .center)
+                                Text(movie.name ?? "Unknown")
+                                    .font(.title)
+                                Spacer()
+                                VStack {
+                                    Text("\(movie.rating)/10")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                    HStack {
+                                        Image(systemName: "star.fill")
+                                            .foregroundColor(.yellow)
+                                    }
+                                }
                             }
                         }
                         .frame(height: 50)
