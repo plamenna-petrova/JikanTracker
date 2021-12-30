@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct RecentlyAddedView: View {
     @Environment(\.managedObjectContext) var moc
@@ -25,212 +26,220 @@ struct RecentlyAddedView: View {
     @State private var showingAddScreen = false
     
     var body: some View {
+        
+        let currentUserUID = Auth.auth().currentUser?.uid
+        
+        let filteredManga = manga.filter({ $0.userUID == currentUserUID })
+        let filteredAnime = anime.filter({ $0.userUID == currentUserUID })
+        let filteredTVShows = tvShows.filter({ $0.userUID == currentUserUID })
+        let filteredMovies = movies.filter({ $0.userUID == currentUserUID })
+        
         List{
             Section(header:Text("Manga")){
-                if manga.count > 3 {
-                    ForEach(manga[0..<3],id: \.self){manga in
-                        NavigationLink(destination: MangaDetailsView(manga: manga)) {
-                            VStack(alignment: .leading) {
-                                HStack{
-                                    Text(manga.name ?? "Unknown")
-                                        .font(.title2)
-                                    Spacer()
-                                    VStack{
-                                        Text("Ch \(manga.chapters)")
-                                            .font(.subheadline)
-                                            .multilineTextAlignment(.trailing)
-                                            .foregroundColor(.secondary)
-                                        HStack{
-                                            Image(systemName: "star.fill")
-                                                .foregroundColor(.yellow)
-                                            Text("\(manga.rating)/10")
+                if filteredManga.count > 3 {
+                    ForEach(filteredManga[0..<3],id: \.self){manga in
+                            NavigationLink(destination: MangaDetailsView(manga: manga)) {
+                                VStack(alignment: .leading) {
+                                    HStack{
+                                        Text(manga.name ?? "Unknown")
+                                            .font(.title2)
+                                        Spacer()
+                                        VStack{
+                                            Text("Ch \(manga.chapters)")
                                                 .font(.subheadline)
+                                                .multilineTextAlignment(.trailing)
                                                 .foregroundColor(.secondary)
+                                            HStack{
+                                                Image(systemName: "star.fill")
+                                                    .foregroundColor(.yellow)
+                                                Text("\(manga.rating)/10")
+                                                    .font(.subheadline)
+                                                    .foregroundColor(.secondary)
+                                            }
                                         }
                                     }
                                 }
+                                .frame(height: 40)
                             }
-                            .frame(height: 40)
-                        }
                     }
                 }
                 else {
-                    ForEach(manga, id: \.self){manga in
-                        NavigationLink(destination: MangaDetailsView(manga: manga)) {
-                            VStack(alignment: .leading) {
-                                HStack{
-                                    Text(manga.name ?? "Unknown")
-                                        .font(.title2)
-                                    Spacer()
-                                    VStack{
-                                        Text("Ch \(manga.chapters)")
-                                            .font(.subheadline)
-                                            .multilineTextAlignment(.trailing)
-                                            .foregroundColor(.secondary)
-                                        HStack{
-                                            Image(systemName: "star.fill")
-                                                .foregroundColor(.yellow)
-                                            Text("\(manga.rating)/10")
+                    ForEach(filteredManga, id: \.self){manga in
+                            NavigationLink(destination: MangaDetailsView(manga: manga)) {
+                                VStack(alignment: .leading) {
+                                    HStack{
+                                        Text(manga.name ?? "Unknown")
+                                            .font(.title2)
+                                        Spacer()
+                                        VStack{
+                                            Text("Ch \(manga.chapters)")
                                                 .font(.subheadline)
+                                                .multilineTextAlignment(.trailing)
                                                 .foregroundColor(.secondary)
+                                            HStack{
+                                                Image(systemName: "star.fill")
+                                                    .foregroundColor(.yellow)
+                                                Text("\(manga.rating)/10")
+                                                    .font(.subheadline)
+                                                    .foregroundColor(.secondary)
+                                            }
                                         }
                                     }
                                 }
+                                .frame(height: 40)
                             }
-                            .frame(height: 40)
-                        }
                     }
                 }
             }
             Section(header:Text("Anime")){
-                if anime.count > 3 {
-                    ForEach(anime[0..<3],id: \.self){anime in
-                        NavigationLink(destination: AnimeDetailsView(anime: anime)) {
-                            VStack(alignment: .leading){
-                                HStack{
-                                    Text(anime.name ?? "Unknown")
-                                        .font(.title2)
-                                    Spacer()
-                                    VStack{
-                                        Text("Ep \(anime.episodes)")
-                                            .font(.subheadline)
-                                            .multilineTextAlignment(.trailing)
-                                            .foregroundColor(.secondary)
-                                        HStack{
-                                            Image(systemName: "star.fill")
-                                                .foregroundColor(.yellow)
-                                            Text("\(anime.rating)/10")
+                if filteredAnime.count > 3 {
+                    ForEach(filteredAnime[0..<3],id: \.self){anime in
+                            NavigationLink(destination: AnimeDetailsView(anime: anime)) {
+                                VStack(alignment: .leading){
+                                    HStack{
+                                        Text(anime.name ?? "Unknown")
+                                            .font(.title2)
+                                        Spacer()
+                                        VStack{
+                                            Text("Ep \(anime.episodes)")
                                                 .font(.subheadline)
+                                                .multilineTextAlignment(.trailing)
                                                 .foregroundColor(.secondary)
+                                            HStack{
+                                                Image(systemName: "star.fill")
+                                                    .foregroundColor(.yellow)
+                                                Text("\(anime.rating)/10")
+                                                    .font(.subheadline)
+                                                    .foregroundColor(.secondary)
+                                            }
                                         }
                                     }
                                 }
-                            }
-                            .frame(height: 40)
+                                .frame(height: 40)
                         }
                     }
                 }
                 else{
-                    ForEach(anime, id: \.self){anime in
-                        NavigationLink(destination: AnimeDetailsView(anime: anime)){
-                            VStack(alignment: .leading){
-                                HStack{
-                                    Text(anime.name ?? "Unknown")
-                                        .font(.title2)
-                                    Spacer()
-                                    VStack{
-                                        Text("Ep \(anime.episodes)")
-                                            .font(.subheadline)
-                                            .multilineTextAlignment(.trailing)
-                                            .foregroundColor(.secondary)
-                                        HStack{
-                                            Image(systemName: "star.fill")
-                                                .foregroundColor(.yellow)
-                                            Text("\(anime.rating)/10")
+                    ForEach(filteredAnime, id: \.self){anime in
+                            NavigationLink(destination: AnimeDetailsView(anime: anime)){
+                                VStack(alignment: .leading){
+                                    HStack{
+                                        Text(anime.name ?? "Unknown")
+                                            .font(.title2)
+                                        Spacer()
+                                        VStack{
+                                            Text("Ep \(anime.episodes)")
                                                 .font(.subheadline)
+                                                .multilineTextAlignment(.trailing)
                                                 .foregroundColor(.secondary)
+                                            HStack{
+                                                Image(systemName: "star.fill")
+                                                    .foregroundColor(.yellow)
+                                                Text("\(anime.rating)/10")
+                                                    .font(.subheadline)
+                                                    .foregroundColor(.secondary)
+                                            }
                                         }
                                     }
                                 }
-                            }
-                            .frame(height: 40)
+                                .frame(height: 40)
                         }
                     }
                 }
             }
             Section(header:Text("TV Shows")){
-                if tvShows.count > 3 {
-                    ForEach(tvShows[0..<3],id: \.self){tvShow in
-                        NavigationLink(destination: TVShowDetailsView(tvShow: tvShow)){
-                            VStack(alignment: .leading){
-                                HStack{
-                                    Text(tvShow.name ?? "Unknown")
-                                        .font(.title2)
-                                    Spacer()
-                                    VStack{
-                                        Text("Ep \(tvShow.episodes)")
-                                            .font(.subheadline)
-                                            .multilineTextAlignment(.trailing)
-                                            .foregroundColor(.secondary)
-                                        HStack{
-                                            Image(systemName: "star.fill")
-                                                .foregroundColor(.yellow)
-                                            Text("\(tvShow.rating)/10")
+                if filteredTVShows.count > 3 {
+                    ForEach(filteredTVShows[0..<3],id: \.self){tvShow in
+                            NavigationLink(destination: TVShowDetailsView(tvShow: tvShow)){
+                                VStack(alignment: .leading){
+                                    HStack{
+                                        Text(tvShow.name ?? "Unknown")
+                                            .font(.title2)
+                                        Spacer()
+                                        VStack{
+                                            Text("Ep \(tvShow.episodes)")
                                                 .font(.subheadline)
+                                                .multilineTextAlignment(.trailing)
                                                 .foregroundColor(.secondary)
+                                            HStack{
+                                                Image(systemName: "star.fill")
+                                                    .foregroundColor(.yellow)
+                                                Text("\(tvShow.rating)/10")
+                                                    .font(.subheadline)
+                                                    .foregroundColor(.secondary)
+                                            }
                                         }
                                     }
                                 }
+                                .frame(height: 40)
                             }
-                            .frame(height: 40)
-                        }
                     }
                 }
                 else {
-                    ForEach(tvShows,id: \.self){tvShow in
-                        NavigationLink(destination: TVShowDetailsView(tvShow: tvShow)){
-                            VStack(alignment: .leading){
-                                HStack{
-                                    Text(tvShow.name ?? "Unknown")
-                                        .font(.title2)
-                                    Spacer()
-                                    VStack{
-                                        Text("Ep \(tvShow.episodes)")
-                                            .font(.subheadline)
-                                            .multilineTextAlignment(.trailing)
-                                            .foregroundColor(.secondary)
-                                        HStack{
-                                            Image(systemName: "star.fill")
-                                                .foregroundColor(.yellow)
-                                            Text("\(tvShow.rating)/10")
+                    ForEach(filteredTVShows, id: \.self){tvShow in
+                            NavigationLink(destination: TVShowDetailsView(tvShow: tvShow)){
+                                VStack(alignment: .leading){
+                                    HStack{
+                                        Text(tvShow.name ?? "Unknown")
+                                            .font(.title2)
+                                        Spacer()
+                                        VStack{
+                                            Text("Ep \(tvShow.episodes)")
                                                 .font(.subheadline)
+                                                .multilineTextAlignment(.trailing)
                                                 .foregroundColor(.secondary)
+                                            HStack{
+                                                Image(systemName: "star.fill")
+                                                    .foregroundColor(.yellow)
+                                                Text("\(tvShow.rating)/10")
+                                                    .font(.subheadline)
+                                                    .foregroundColor(.secondary)
+                                            }
                                         }
                                     }
                                 }
+                                .frame(height: 40)
                             }
-                            .frame(height: 40)
-                        }
                     }
                 }
             }
             Section(header:Text("Movies")){
-                if movies.count > 3 {
-                    ForEach(movies[0..<3],id: \.self){movie in
-                        NavigationLink(destination: MovieDetailsView(movie: movie)){
-                            VStack(alignment: .leading){
-                                Text(movie.name ?? "Unknown")
-                                    .font(.title2)
-                                Spacer()
-                                HStack(alignment: .center){
-                                    Image(systemName: "star.fill")
-                                        .foregroundColor(.yellow)
-                                    Text("\(movie.rating)/10")
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
+                if filteredMovies.count > 3 {
+                    ForEach(filteredMovies[0..<3],id: \.self){movie in
+                            NavigationLink(destination: MovieDetailsView(movie: movie)){
+                                VStack(alignment: .leading){
+                                    Text(movie.name ?? "Unknown")
+                                        .font(.title2)
+                                    Spacer()
+                                    HStack(alignment: .center){
+                                        Image(systemName: "star.fill")
+                                            .foregroundColor(.yellow)
+                                        Text("\(movie.rating)/10")
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                    }
                                 }
+                                .frame(height: 50)
                             }
-                            .frame(height: 50)
-                        }
                     }
                 }
                 else{
-                    ForEach(movies,id: \.self){movie in
-                        NavigationLink(destination: MovieDetailsView(movie: movie)){
-                            VStack(alignment: .leading){
-                                Text(movie.name ?? "Unknown")
-                                    .font(.title2)
-                                Spacer()
-                                HStack(alignment: .center){
-                                    Image(systemName: "star.fill")
-                                        .foregroundColor(.yellow)
-                                    Text("\(movie.rating)/10")
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
+                    ForEach(filteredMovies,id: \.self){movie in
+                            NavigationLink(destination: MovieDetailsView(movie: movie)){
+                                VStack(alignment: .leading){
+                                    Text(movie.name ?? "Unknown")
+                                        .font(.title2)
+                                    Spacer()
+                                    HStack(alignment: .center){
+                                        Image(systemName: "star.fill")
+                                            .foregroundColor(.yellow)
+                                        Text("\(movie.rating)/10")
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                    }
                                 }
+                                .frame(height: 50)
                             }
-                            .frame(height: 50)
-                        }
                     }
                 }
             }
