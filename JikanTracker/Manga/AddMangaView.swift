@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct AddMangaView: View {
     @Environment(\.managedObjectContext) var moc
@@ -18,6 +19,8 @@ struct AddMangaView: View {
     @State private var type = ""
     
     let types = ["Reading", "On hold", "Dropped", "Completed", "Rereading", "Plan to read"]
+    
+    let currentUserUID : String = (Auth.auth().currentUser?.uid)!
     
     var body: some View {
         NavigationView {
@@ -73,6 +76,8 @@ struct AddMangaView: View {
                 newManga.review = self.review
                 newManga.type = self.type
                 newManga.date = Date()
+                newManga.userUID = currentUserUID
+                
                 try? self.moc.save()
                 
                 self.presentationMode.wrappedValue.dismiss()

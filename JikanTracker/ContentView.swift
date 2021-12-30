@@ -70,24 +70,29 @@ struct JikanTrackerView: View {
     
     var body: some View {
             
-        let filteredAnime = anime.filter({ $0.userUID == Auth.auth().currentUser?.uid})
+        let currentUserUID = Auth.auth().currentUser?.uid
+        
+        let filteredManga = manga.filter({ $0.userUID == currentUserUID })
+        let filteredAnime = anime.filter({ $0.userUID == currentUserUID })
+        let filteredTVShows = tvShows.filter({ $0.userUID == currentUserUID })
+        let filteredMovies = movies.filter({ $0.userUID == currentUserUID })
         
             ScrollView{
                 VStack{
                     Text("Hi, \(userEmail)")
                     LazyVGrid(columns: [.init(), .init()]){
                         NavigationLink(destination: MangaListView()){
-                            CustomGroup(img: "books.vertical", count: "\(manga.count)", color: Color.green, label: "Mangas")
+                            CustomGroup(img: "books.vertical", count: "\(filteredManga.count)", color: Color.green, label: "Mangas")
                         }
                         NavigationLink(destination: AnimeListView()){
                             CustomGroup(img: "tv", count: "\(filteredAnime.count)", color: Color.red, label: "Anime")
                         }
                         NavigationLink(destination: TVShowsListView()){
-                            CustomGroup(img: "play.tv", count: "\(tvShows.count)", color: Color.orange, label: "TV Shows")
+                            CustomGroup(img: "play.tv", count: "\(filteredTVShows.count)", color: Color.orange, label: "TV Shows")
                         }
                         NavigationLink(destination:
                             MoviesListView()) {
-                            CustomGroup(img: "film", count: "\(movies.count)", color: Color.blue, label: "Movies")
+                            CustomGroup(img: "film", count: "\(filteredMovies.count)", color: Color.blue, label: "Movies")
                         }
                     }.padding()
                     Form{

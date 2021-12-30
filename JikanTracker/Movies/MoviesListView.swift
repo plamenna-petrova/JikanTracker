@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct MoviesListView: View {
     @Environment(\.managedObjectContext) var moc
@@ -19,21 +20,22 @@ struct MoviesListView: View {
     var body: some View {
         List{
             ForEach(movie,id: \.self){movie in
-                NavigationLink(destination: MovieDetailsView(movie: movie)) {
-                    VStack(alignment: .leading) {
-                        Text(movie.name ?? "Unknown")
-                            .font(.title)
-                        Spacer()
-                        HStack(alignment: .center){
-                            Image(systemName: "star.fill")
-                                .foregroundColor(.yellow)
-                            Text("\(movie.rating)/10")
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
+                if (Auth.auth().currentUser?.uid == movie.userUID) {
+                    NavigationLink(destination: MovieDetailsView(movie: movie)) {
+                        VStack(alignment: .leading) {
+                            Text(movie.name ?? "Unknown")
+                                .font(.title)
+                            Spacer()
+                            HStack(alignment: .center){
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(.yellow)
+                                Text("\(movie.rating)/10")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
                         }
-                    }
-                    .frame(height: 50)
-                }
+                        .frame(height: 50)
+                    }                }
             }
             .onDelete(perform: removeMovies)
         }

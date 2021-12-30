@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct AddTVShowView: View {
     @Environment(\.managedObjectContext) var moc
@@ -18,6 +19,8 @@ struct AddTVShowView: View {
     @State private var type = ""
     
     let types = ["Watching", "On hold", "Dropped", "Completed", "ReWatching", "Plan to Watch"]
+    
+    let currentUserUID : String = (Auth.auth().currentUser?.uid)!
     
     var body: some View {
         NavigationView{
@@ -72,6 +75,7 @@ struct AddTVShowView: View {
                 newTVShow.review = self.review
                 newTVShow.type = self.type
                 newTVShow.date = Date()
+                newTVShow.userUID = currentUserUID
                 
                 try? self.moc.save()
                 

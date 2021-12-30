@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct MangaListView: View {
     @Environment(\.managedObjectContext) var moc
@@ -19,36 +20,36 @@ struct MangaListView: View {
     var body: some View {
         List{
             ForEach(manga,id: \.self){manga in
-                NavigationLink(destination: MangaDetailsView(manga: manga)) {
-                    VStack(alignment: .leading){
-                        HStack(alignment: .top) {
-                            Text(manga.name ?? "Unknown")
-                                .font(.title)
-                            Spacer()
-                            VStack{
-                                Text("Ch \(manga.chapters)")
-                                    .font(.subheadline)
-                                    .multilineTextAlignment(.trailing)
-                                    .foregroundColor(.secondary)
-                                HStack{
-                                    Image(systemName: "star.fill")
-                                        .foregroundColor(.yellow)
-                                    Text("\(manga.rating)/10").font(.subheadline)
+                if (Auth.auth().currentUser?.uid == manga.userUID) {
+                    NavigationLink(destination: MangaDetailsView(manga: manga)) {
+                        VStack(alignment: .leading){
+                            HStack(alignment: .top) {
+                                Text(manga.name ?? "Unknown")
+                                    .font(.title)
+                                Spacer()
+                                VStack{
+                                    Text("Ch \(manga.chapters)")
+                                        .font(.subheadline)
+                                        .multilineTextAlignment(.trailing)
                                         .foregroundColor(.secondary)
+                                    HStack{
+                                        Image(systemName: "star.fill")
+                                            .foregroundColor(.yellow)
+                                        Text("\(manga.rating)/10").font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                    }
                                 }
                             }
                         }
-                    }
-                    .frame(height: 50)
-                }
+                        .frame(height: 50)
+                    }                }
             }
             .onDelete(perform: removeManga)
         }
         .navigationBarTitle("Manga")
         .listStyle(PlainListStyle())
-        .navigationBarItems(trailing:
-        HStack{
-           EditButton()
+        .navigationBarItems(trailing: HStack{
+            EditButton()
                 .accentColor(.red)
             Button(action: {
                 self.showingAddScreen.toggle()
@@ -60,6 +61,7 @@ struct MangaListView: View {
             AddMangaView().environment(\.managedObjectContext, self.moc)
         }
     }
+    
     func removeManga(at offsets: IndexSet) {
         for offset in offsets{
             let singleManga = manga[offset]

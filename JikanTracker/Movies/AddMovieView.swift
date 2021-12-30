@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct AddMovieView: View {
     @Environment(\.managedObjectContext) var moc
@@ -14,6 +15,8 @@ struct AddMovieView: View {
     @State private var name = ""
     @State private var rating = 0
     @State private var review = ""
+    
+    let currentUserUID : String = (Auth.auth().currentUser?.uid)!
     
     var body: some View {
         NavigationView{
@@ -44,6 +47,7 @@ struct AddMovieView: View {
                 newMovie.date = Date()
                 newMovie.rating = Int16(self.rating)
                 newMovie.review = self.review
+                newMovie.userUID = currentUserUID
                 
                 try? self.moc.save()
                 

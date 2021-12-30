@@ -22,28 +22,28 @@ struct AnimeListView: View {
             ForEach(anime,id: \.self){anime in
                 if (Auth.auth().currentUser?.uid == anime.userUID) {
                     NavigationLink(destination:
-                    AnimeDetailsView(anime: anime)) {
+                                    AnimeDetailsView(anime: anime)) {
                         VStack(alignment: .leading) {
                             HStack(alignment: .top) {
                                 Text(anime.name ?? "Unknown")
                                     .font(.title)
-                            Spacer()
-                            VStack{
-                                Text("Ep \(anime.episodes)")
-                                    .font(.subheadline)
-                                    .multilineTextAlignment(.trailing)
-                                    .foregroundColor(.secondary)
-                                HStack{
-                                    Image(systemName: "star.fill").foregroundColor(.yellow)
-                                    Text("\(anime.rating)/10")
+                                Spacer()
+                                VStack{
+                                    Text("Ep \(anime.episodes)")
                                         .font(.subheadline)
+                                        .multilineTextAlignment(.trailing)
                                         .foregroundColor(.secondary)
+                                    HStack{
+                                        Image(systemName: "star.fill").foregroundColor(.yellow)
+                                        Text("\(anime.rating)/10")
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                    }
                                 }
                             }
                         }
-                    }
-                    .frame(height: 50)
-                   }                }
+                        .frame(height: 50)
+                    }                }
             }
             .onDelete(perform: removeAnime)
         }
@@ -60,6 +60,7 @@ struct AnimeListView: View {
             AddAnimeView().environment(\.managedObjectContext, self.moc)
         }
     }
+    
     func removeAnime(at offsets: IndexSet) {
         for offset in offsets{
             let singleAnime = anime[offset]

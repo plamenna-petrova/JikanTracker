@@ -78,6 +78,7 @@ struct AddAnimeView: View {
                 newAnime.review = self.review
                 newAnime.date = Date()
                 newAnime.userUID = currentUserUID
+                
                 try? self.moc.save()
                 
                 self.presentationMode.wrappedValue.dismiss()
