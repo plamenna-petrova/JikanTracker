@@ -32,23 +32,27 @@ struct MangaDetailsView: View {
         VStack{
             Form{
                 Section {
-                    if self.image?.count != 0 {
-                        Button(action: {
-                            self.showImage.toggle()
-                        }) {
-                            Image(uiImage: UIImage(data: self.image!)!)
-                                .renderingMode(.original)
-                                .resizable()
-                                .frame(width: 75, height: 75, alignment: .leading)
-                        }
-                    } else {
-                        Button(action: {
-                            self.showImage.toggle()
-                        }) {
-                            Image("logo")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 75, height: 75)
+                    HStack {
+                        Text("Upload image")
+                        Spacer()
+                        if self.image?.count != 0 {
+                            Button(action: {
+                                self.showImage.toggle()
+                            }) {
+                                Image(uiImage: UIImage(data: self.image!)!)
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .frame(width: 75, height: 75, alignment: .leading)
+                            }
+                        } else {
+                            Button(action: {
+                                self.showImage.toggle()
+                            }) {
+                                Image("logo")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 75, height: 75)
+                            }
                         }
                     }
                 }
