@@ -4,8 +4,8 @@
 //
 //  Created by Plamenna Petrova on 11/28/21.
 //
-
 import SwiftUI
+import Kingfisher
 
 struct TopMangaData: Codable {
     
@@ -17,6 +17,7 @@ struct TopManga: Codable {
     var rank: Int
     var score: Double
     var start_date: String
+    var image_url: String
 }
 
 struct TopMangaListView: View {
@@ -28,9 +29,12 @@ struct TopMangaListView: View {
             VStack(alignment: .leading){
                 
                 HStack {
+                    KFImage(URL(string: item.image_url)!)
+                        .resizable()
+                        .frame(width: 75, height: 75)
                     Text("\(item.rank).")
                     Text("\(item.title)")
-                        .font(.title2)
+                        .font(.caption2)
                         .foregroundColor(.orange)
                 }
                 Text("     Aired \(item.start_date)")
