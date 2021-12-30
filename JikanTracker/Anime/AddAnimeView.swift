@@ -9,7 +9,9 @@ import SwiftUI
 import FirebaseAuth
 
 struct AddAnimeView: View {
+    
     @Environment(\.managedObjectContext) var moc
+    
     @Environment(\.presentationMode) var presentationMode
     
     @State private var name = ""
@@ -18,15 +20,44 @@ struct AddAnimeView: View {
     @State private var review = ""
     @State private var type = ""
     
+    @State private var image : Data? = .init(count: 0)
+    
+    @State private var showImage = false
+    
     let types = ["Watching", "On hold", "Dropped", "Completed", "ReWatching", "Plan to Watch"]
     
     let currentUserUID : String = (Auth.auth().currentUser?.uid)!
     
     var body: some View {
+        
+        let jikanImage = UIImage(named: "logo")
+        let jikanImagePngData = jikanImage?.pngData()
+        
         NavigationView{
             Form {
                 TextField("Anime name", text: $name)
                     .disableAutocorrection(true)
+                Section {
+                    if self.image?.count != 0 {
+                        Button(action: {
+                            self.showImage.toggle()
+                        }) {
+                            Image(uiImage: UIImage(data: self.image!)!)
+                                .renderingMode(.original)
+                                .resizable()
+                                .frame(width: 75, height: 75)
+                        }
+                    } else {
+                        Button(action: {
+                            self.showImage.toggle()
+                        }) {
+                            Image("logo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 75, height: 75)
+                        }
+                    }
+                }
                 Section {
                     Picker("Select", selection: $type) {
                         ForEach(types, id: \.self) {
@@ -72,6 +103,7 @@ struct AddAnimeView: View {
               Button("Save") {
                 let newAnime = Anime(context: self.moc)
                 newAnime.name = self.name
+                newAnime.image = self.image ?? jikanImagePngData
                 newAnime.type = self.type
                 newAnime.episodes = Int16(self.episodes)
                 newAnime.rating = Int16(self.rating)
@@ -84,6 +116,9 @@ struct AddAnimeView: View {
                 self.presentationMode.wrappedValue.dismiss()
             })
             .navigationBarTitleDisplayMode(.inline)
+            .sheet(isPresented: self.$showImage, content: {
+                ImagePicker(show: self.$showImage, image: self.$image)
+            })
         }
     }
 }

@@ -9,7 +9,9 @@ import SwiftUI
 import Firebase
 
 struct AnimeListView: View {
+    
     @Environment(\.managedObjectContext) var moc
+    
     @FetchRequest(entity: Anime.entity(), sortDescriptors: [
         NSSortDescriptor(keyPath: \Anime.name, ascending: true),
         NSSortDescriptor(keyPath: \Anime.episodes, ascending: true)
@@ -18,13 +20,20 @@ struct AnimeListView: View {
     @State private var showingAddScreen = false
     
     var body: some View {
+        
+        let jikanImage = UIImage(named: "logo")
+        let jikanImagePngData = jikanImage?.pngData()
+        
         List{
-            ForEach(anime,id: \.self){anime in
+            ForEach(anime,id: \.self){ anime in
                 if (Auth.auth().currentUser?.uid == anime.userUID) {
                     NavigationLink(destination:
                                     AnimeDetailsView(anime: anime)) {
                         VStack(alignment: .leading) {
                             HStack(alignment: .top) {
+                                Image(uiImage: UIImage(data: anime.image ?? jikanImagePngData!)!)
+                                    .resizable()
+                                    .frame(width: 50)
                                 Text(anime.name ?? "Unknown")
                                     .font(.title)
                                 Spacer()

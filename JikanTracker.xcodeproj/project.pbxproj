@@ -21,6 +21,7 @@
 		716A68812754466B005A6981 /* TopAnimeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A68802754466B005A6981 /* TopAnimeListView.swift */; };
 		716A688327544CE0005A6981 /* TopMangaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716A688227544CE0005A6981 /* TopMangaListView.swift */; };
 		71AEB64D277CBA4900F38B5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71AEB64C277CBA4900F38B5A /* GoogleService-Info.plist */; };
+		71F6CD69277DEF4C00301F9C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F6CD68277DEF4C00301F9C /* ImagePicker.swift */; };
 		71FDC6042753B79B00ABA087 /* JikanTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FDC6032753B79B00ABA087 /* JikanTrackerApp.swift */; };
 		71FDC6062753B79B00ABA087 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FDC6052753B79B00ABA087 /* ContentView.swift */; };
 		71FDC6082753B7A700ABA087 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71FDC6072753B7A700ABA087 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		716A68802754466B005A6981 /* TopAnimeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAnimeListView.swift; sourceTree = "<group>"; };
 		716A688227544CE0005A6981 /* TopMangaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMangaListView.swift; sourceTree = "<group>"; };
 		71AEB64C277CBA4900F38B5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		71F6CD68277DEF4C00301F9C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		71FDC6002753B79B00ABA087 /* JikanTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JikanTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71FDC6032753B79B00ABA087 /* JikanTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JikanTrackerApp.swift; sourceTree = "<group>"; };
 		71FDC6052753B79B00ABA087 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				716A68672753F8FA005A6981 /* Manga */,
 				71FDC6162753BBBD00ABA087 /* Anime */,
 				71FDC6032753B79B00ABA087 /* JikanTrackerApp.swift */,
+				71F6CD68277DEF4C00301F9C /* ImagePicker.swift */,
 				716A687D27543354005A6981 /* RecentlyAddedView.swift */,
 				716A68802754466B005A6981 /* TopAnimeListView.swift */,
 				716A688227544CE0005A6981 /* TopMangaListView.swift */,
@@ -309,6 +312,7 @@
 				716A686B2753F930005A6981 /* MangaDetailsView.swift in Sources */,
 				71FDC6042753B79B00ABA087 /* JikanTrackerApp.swift in Sources */,
 				71FDC6182753BC3300ABA087 /* AddAnimeView.swift in Sources */,
+				71F6CD69277DEF4C00301F9C /* ImagePicker.swift in Sources */,
 				716A687127540A9E005A6981 /* AddMovieView.swift in Sources */,
 				716A686D2753F947005A6981 /* MangaListView.swift in Sources */,
 			);
