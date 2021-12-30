@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct TVShowsListView: View {
     @Environment(\.managedObjectContext) var moc
@@ -19,28 +20,30 @@ struct TVShowsListView: View {
     var body: some View{
         List{
             ForEach(tvShow,id: \.self){tvShow in
-                NavigationLink(destination: TVShowDetailsView(tvShow: tvShow)){
-                    VStack(alignment: .leading) {
-                        HStack(alignment: .top) {
-                            Text(tvShow.name ?? "Unknown")
-                                .font(.title)
-                            Spacer()
-                            VStack{
-                                Text("Ep \(tvShow.episodes)")
-                                    .font(.subheadline)
-                                    .multilineTextAlignment(.trailing)
-                                    .foregroundColor(.secondary)
-                                HStack{
-                                    Image(systemName: "star.fill")
-                                        .foregroundColor(.yellow)
-                                    Text("\(tvShow.rating)/10")
+                if (Auth.auth().currentUser?.uid == tvShow.userUID) {
+                    NavigationLink(destination: TVShowDetailsView(tvShow: tvShow)){
+                        VStack(alignment: .leading) {
+                            HStack(alignment: .top) {
+                                Text(tvShow.name ?? "Unknown")
+                                    .font(.title)
+                                Spacer()
+                                VStack{
+                                    Text("Ep \(tvShow.episodes)")
                                         .font(.subheadline)
+                                        .multilineTextAlignment(.trailing)
                                         .foregroundColor(.secondary)
+                                    HStack{
+                                        Image(systemName: "star.fill")
+                                            .foregroundColor(.yellow)
+                                        Text("\(tvShow.rating)/10")
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                    }
                                 }
                             }
                         }
+                        .frame(height: 50)
                     }
-                    .frame(height: 50)
                 }
             }
             .onDelete(perform: removeTVShows)
