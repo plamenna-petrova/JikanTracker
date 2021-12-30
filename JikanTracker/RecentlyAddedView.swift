@@ -4,7 +4,6 @@
 //
 //  Created by Plamenna Petrova on 11/28/21.
 //
-
 import SwiftUI
 import FirebaseAuth
 
@@ -41,6 +40,9 @@ struct RecentlyAddedView: View {
                             NavigationLink(destination: MangaDetailsView(manga: manga)) {
                                 VStack(alignment: .leading) {
                                     HStack{
+                                        Image(uiImage: UIImage(data: manga.image ?? Data())!)
+                                            .resizable()
+                                            .frame(width: 50, alignment: .center)
                                         Text(manga.name ?? "Unknown")
                                             .font(.title2)
                                         Spacer()
@@ -68,6 +70,9 @@ struct RecentlyAddedView: View {
                             NavigationLink(destination: MangaDetailsView(manga: manga)) {
                                 VStack(alignment: .leading) {
                                     HStack{
+                                        Image(uiImage: UIImage(data: manga.image ?? Data())!)
+                                            .resizable()
+                                            .frame(width: 50, alignment: .center)
                                         Text(manga.name ?? "Unknown")
                                             .font(.title2)
                                         Spacer()
@@ -97,6 +102,9 @@ struct RecentlyAddedView: View {
                             NavigationLink(destination: AnimeDetailsView(anime: anime)) {
                                 VStack(alignment: .leading){
                                     HStack{
+                                        Image(uiImage: UIImage(data: anime.image ?? Data())!)
+                                            .resizable()
+                                            .frame(width: 50, alignment: .center)
                                         Text(anime.name ?? "Unknown")
                                             .font(.title2)
                                         Spacer()
@@ -124,6 +132,9 @@ struct RecentlyAddedView: View {
                             NavigationLink(destination: AnimeDetailsView(anime: anime)){
                                 VStack(alignment: .leading){
                                     HStack{
+                                        Image(uiImage: UIImage(data: anime.image ?? Data())!)
+                                            .resizable()
+                                            .frame(width: 50, alignment: .center)
                                         Text(anime.name ?? "Unknown")
                                             .font(.title2)
                                         Spacer()
@@ -153,6 +164,9 @@ struct RecentlyAddedView: View {
                             NavigationLink(destination: TVShowDetailsView(tvShow: tvShow)){
                                 VStack(alignment: .leading){
                                     HStack{
+                                        Image(uiImage: UIImage(data: tvShow.image ?? Data())!)
+                                            .resizable()
+                                            .frame(width: 50, alignment: .center)
                                         Text(tvShow.name ?? "Unknown")
                                             .font(.title2)
                                         Spacer()
@@ -180,6 +194,9 @@ struct RecentlyAddedView: View {
                             NavigationLink(destination: TVShowDetailsView(tvShow: tvShow)){
                                 VStack(alignment: .leading){
                                     HStack{
+                                        Image(uiImage: UIImage(data: tvShow.image ?? Data())!)
+                                            .resizable()
+                                            .frame(width: 50, alignment: .center)
                                         Text(tvShow.name ?? "Unknown")
                                             .font(.title2)
                                         Spacer()
@@ -208,15 +225,23 @@ struct RecentlyAddedView: View {
                     ForEach(filteredMovies[0..<3],id: \.self){movie in
                             NavigationLink(destination: MovieDetailsView(movie: movie)){
                                 VStack(alignment: .leading){
-                                    Text(movie.name ?? "Unknown")
-                                        .font(.title2)
-                                    Spacer()
-                                    HStack(alignment: .center){
-                                        Image(systemName: "star.fill")
-                                            .foregroundColor(.yellow)
-                                        Text("\(movie.rating)/10")
-                                            .font(.subheadline)
-                                            .foregroundColor(.secondary)
+                                    HStack {
+                                        Image(uiImage: UIImage(data: movie.image ?? Data())!)
+                                            .resizable()
+                                            .frame(width: 50, alignment: .center)
+                                        Text(movie.name ?? "Unknown")
+                                            .font(.title2)
+                                        Spacer()
+                                        VStack {
+                                            Text("\(movie.rating)/10")
+                                                .font(.subheadline)
+                                                .foregroundColor(.secondary)
+                                            HStack(alignment: .center){
+                                                Image(systemName: "star.fill")
+                                                    .foregroundColor(.yellow)
+                                                
+                                            }
+                                        }
                                     }
                                 }
                                 .frame(height: 50)
@@ -227,15 +252,23 @@ struct RecentlyAddedView: View {
                     ForEach(filteredMovies,id: \.self){movie in
                             NavigationLink(destination: MovieDetailsView(movie: movie)){
                                 VStack(alignment: .leading){
-                                    Text(movie.name ?? "Unknown")
-                                        .font(.title2)
-                                    Spacer()
-                                    HStack(alignment: .center){
-                                        Image(systemName: "star.fill")
-                                            .foregroundColor(.yellow)
-                                        Text("\(movie.rating)/10")
-                                            .font(.subheadline)
-                                            .foregroundColor(.secondary)
+                                    HStack {
+                                        Image(uiImage: UIImage(data: movie.image ?? Data())!)
+                                            .resizable()
+                                            .frame(width: 50, alignment: .center)
+                                        Text(movie.name ?? "Unknown")
+                                            .font(.title2)
+                                        Spacer()
+                                        VStack {
+                                            Text("\(movie.rating)/10")
+                                                .font(.subheadline)
+                                                .foregroundColor(.secondary)
+                                            HStack(alignment: .center){
+                                                Image(systemName: "star.fill")
+                                                    .foregroundColor(.yellow)
+                                                
+                                            }
+                                        }
                                     }
                                 }
                                 .frame(height: 50)
