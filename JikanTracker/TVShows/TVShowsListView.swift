@@ -33,7 +33,7 @@ struct TVShowsListView: View {
                                     .resizable()
                                     .frame(width: 50, alignment: .center)
                                 Text(tvShow.name ?? "Unknown")
-                                    .font(.title)
+                                    .font(.title2)
                                 Spacer()
                                 VStack{
                                     Text("Ep \(tvShow.episodes)")

@@ -32,7 +32,7 @@ struct MoviesListView: View {
                                     .resizable()
                                     .frame(width: 50, alignment: .center)
                                 Text(movie.name ?? "Unknown")
-                                    .font(.title)
+                                    .font(.title2)
                                 Spacer()
                                 VStack {
                                     Text("\(movie.rating)/10")

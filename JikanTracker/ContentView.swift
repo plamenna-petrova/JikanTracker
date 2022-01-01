@@ -82,7 +82,7 @@ struct JikanTrackerView: View {
                     Text("Hi, \(userEmail)")
                     LazyVGrid(columns: [.init(), .init()]){
                         NavigationLink(destination: MangaListView()){
-                            CustomGroup(img: "books.vertical", count: "\(filteredManga.count)", color: Color.green, label: "Mangas")
+                            CustomGroup(img: "books.vertical", count: "\(filteredManga.count)", color: Color.green, label: "Manga")
                         }
                         NavigationLink(destination: AnimeListView()){
                             CustomGroup(img: "tv", count: "\(filteredAnime.count)", color: Color.red, label: "Anime")

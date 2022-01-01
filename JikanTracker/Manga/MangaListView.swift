@@ -32,7 +32,7 @@ struct MangaListView: View {
                                         .resizable()
                                         .frame(width: 50)
                                 Text(manga.name ?? "Unknown")
-                                    .font(.title)
+                                    .font(.title2)
                                 Spacer()
                                 VStack{
                                     Text("Ch \(manga.chapters)")

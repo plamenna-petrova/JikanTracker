@@ -35,7 +35,7 @@ struct AnimeListView: View {
                                     .resizable()
                                     .frame(width: 50, alignment: .center)
                                 Text(anime.name ?? "Unknown")
-                                    .font(.title)
+                                    .font(.title2)
                                 Spacer()
                                 VStack{
                                     Text("Ep \(anime.episodes)")
